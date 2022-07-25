@@ -13,7 +13,7 @@ const MainQuery = new GraphQLObjectType({
         timestamp: { type: GraphQLString },
       },
       resolve(parent, args) {
-        return getLocations();
+        return getLocations()?.find((a) => a.timestamp > String(new Date(new Date().getTime() - 1000 * 60 * 60).valueOf()));
       },
     },
   },
