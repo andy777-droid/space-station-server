@@ -24,7 +24,7 @@ app.listen(8080, () => {
 
 //This method is inserting the space station locations into the database
 const cronJob = nodeCron.schedule("*/5 * * * * *", () => {
-  axios.get("http://api.open-notify.org/iss-now.json/").then((response) => {
+  axios.get("http://api.open-notify.org/iss-now.json/").then(async (response) => {
     let location = { timestamp: String(response.data.timestamp), longitude: String(response.data.iss_position.longitude), latitude: String(response.data.iss_position.latitude) };
     addLocations(location);
   });
