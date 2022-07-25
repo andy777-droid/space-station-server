@@ -15,9 +15,7 @@ const getLocations = async () => {
     TableName: TABLE_NAME,
   };
   const locations = await dynomoClient.scan(params).promise();
-  return locations.Items.find((a) => {
-    a.timestamp > String(new Date(new Date().getTime() - 1000 * 60 * 60).valueOf());
-  });
+  return locations?.Items?.filter((item) => item.timestamp > String(new Date(new Date().getTime() - 1000 * 60 * 60).valueOf()));
 };
 
 const addLocations = async (location) => {
